@@ -1,0 +1,161 @@
+﻿<Page x:Class="NotecardApp.Views.ManageNotecardsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:NotecardApp.Views" 
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+      xmlns:ViewModel="clr-namespace:NotecardApp.ViewModels"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ManageNotecardsPage">
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="AUTO"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0" Grid.Column="0">
+            <TextBlock Text="Decks"
+                       FontSize="44"
+                       HorizontalAlignment="Center"/>
+
+        </Grid>
+
+        <Grid Grid.Row="0" Grid.Column="1">
+            <TextBlock Text="Notecards"
+                       FontSize="44"
+                       HorizontalAlignment="Center"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="0"
+              Width="300"
+              HorizontalAlignment="Left">
+            <ListBox ItemsSource="{Binding Decks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValue="{Binding SelectedDeckId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValuePath="Id" DisplayMemberPath="Name">
+
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="SelectionChanged">
+                        <i:InvokeCommandAction Command="{Binding DeckSelectionCommand}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+            </ListBox>
+
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <ListView ItemsSource="{Binding Notecards, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValue="{Binding SelectedNotecardId, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     SelectedValuePath="Id">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Question"
+                                        DisplayMemberBinding="{Binding Question, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="auto"/>
+                        <GridViewColumn Header="Answer"
+                                        DisplayMemberBinding="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="auto"/>
+                        <GridViewColumn Header="Hint"
+                                        DisplayMemberBinding="{Binding Hint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                        Width="auto"/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="0">
+            <StackPanel Height="60"
+                        Width="300"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <Button Content="New Deck"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding AddDeckCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                <Button Content="Edit Deck"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding UpdateDeckCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                <Button Content="Delete Deck"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding DeleteDeckCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="2" Grid.Column="1">
+            <StackPanel Height="60"
+                        Width="300"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Top">
+                <Button Content="New Notecard"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding AddNotecardCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                <Button Content="Edit Notecard"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding UpdateNotecardCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+                <Button Content="Delete Notecard"
+                    Height="auto"
+                    Width="90"
+                    Margin="5">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:InvokeCommandAction Command="{Binding DeleteNotecardCommand}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+
+                </Button>
+
+            </StackPanel>
+        </Grid>
+
+    </Grid>
+
+</Page>

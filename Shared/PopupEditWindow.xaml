@@ -1,0 +1,76 @@
+﻿<Window x:Class="NotecardApp.Shared.PopupEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:NotecardApp.Shared"
+        mc:Ignorable="d"
+        Title="PopupEditWindow" Height="300" Width="500"
+        Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Name="DeckFields" Visibility="Hidden">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Name:" Width="120"/>
+                    <TextBox x:Name="DeckName" Width="300"/>
+                </StackPanel>
+                <Label Content="Cards in this Deck:" Width="120" HorizontalAlignment="Left"/>
+                <ListView Name="DeckNotecards" Height="160">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Question"
+                                            x:Name="DeckNotecardsQuestion"
+                                            DisplayMemberBinding="{Binding Question, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <GridViewColumn Header="Answer"
+                                            DisplayMemberBinding="{Binding Answer, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                            <GridViewColumn Header="Hint"
+                                            DisplayMemberBinding="{Binding Hint, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+            
+        </Grid>
+        <Grid Grid.Row="0" Name="NotecardFields" Visibility="Hidden">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Notecard Question:" Width="120"/>
+                    <TextBox x:Name="NotecardQuestion" Width="300"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Notecard Answer:" Width="120"/>
+                    <TextBox x:Name="NotecardAnswer" Width="300"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Notecard Hint:" Width="120"/>
+                    <TextBox x:Name="NotecardHint" Width="300"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="5">
+                    <Label Content="Decks:" Width="120"/>
+                    <ComboBox Name="Decks" SelectedValuePath="Id" Width="300"/>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            
+            <Button Content="Save" Grid.Column="0" Height="50"
+                    Click="SaveCommand"/>
+            <Button Content="Cancel" Grid.Column="1" Height="50"
+                    Click="CancelCommand"/>
+        </Grid>
+        
+    </Grid>
+</Window>

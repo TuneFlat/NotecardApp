@@ -1,0 +1,12 @@
+﻿<Application x:Class="NotecardApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:NotecardApp" 
+             xmlns:viewmodels="clr-namespace:NotecardApp.ViewModels"
+             xmlns:views="clr-namespace:NotecardApp.Views"
+             StartupUri="MainWindow.xaml">
+
+    <Application.Resources>
+        
+    </Application.Resources>
+</Application>
